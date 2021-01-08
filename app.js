@@ -13,14 +13,12 @@ app
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "ejs")
   .get("/", (req, res) => res.render("pages/index"))
-  .get("/debug", (req, res) =>
-    res.send(console.log(env.LINE_CHANNEL_CHANNELID))
-  )
+
   .get("/login", (req, res) => {
     const data = {
       response_type: "code",
-      client_id: env.LINE_CHANNEL_CHANNELID,
-      redirect_uri: env.URL,
+      client_id: "1655560494",
+      redirect_uri: "https://node-line-login-sample.herokuapp.com/callback",
       state: "hoge",
       scope: "profile",
     };
