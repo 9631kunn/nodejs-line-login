@@ -9,14 +9,18 @@ const querystring = require("querystring");
 
 app
   .use(express.static(path.join(__dirname, "public")))
+  .disable("etag")
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "ejs")
   .get("/", (req, res) => res.render("pages/index"))
+  .get("/debug", (req, res) =>
+    res.send(console.log(env.LINE_CHANNEL_CHANNELID))
+  )
   .get("/login", (req, res) => {
     const query = querystring.stringify({
       response_type: "code",
       client_id: env.LINE_CHANNEL_CHANNELID,
-      redirect_uri: env.URL + "/callback",
+      redirect_uri: "https://node-line-login-sample.herokuapp.com/callback",
       state: "hoge",
       scope: "profile",
     });
