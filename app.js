@@ -15,7 +15,7 @@ app
   .get("/login", (req, res) => {
     const query = querystring.stringify({
       response_type: "code",
-      client_id: env.LINE_CHANNEL_ID,
+      client_id: env.LINE_CHANNEL_CHANNELID,
       redirect_uri: env.URL + "/callback",
       state: "hoge",
       scope: "profile",
