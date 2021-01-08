@@ -17,13 +17,14 @@ app
     res.send(console.log(env.LINE_CHANNEL_CHANNELID))
   )
   .get("/login", (req, res) => {
-    const query = querystring.stringify({
+    const data = {
       response_type: "code",
       client_id: env.LINE_CHANNEL_CHANNELID,
-      redirect_uri: "https://node-line-login-sample.herokuapp.com/callback",
+      redirect_uri: env.URL,
       state: "hoge",
       scope: "profile",
-    });
+    };
+    const query = querystring.stringify(data);
     res.redirect(301, "https://access.line.me/oauth2/v2.1/authorize?" + query);
   })
   .get("/callback", (req, res) => {
